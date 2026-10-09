@@ -28,12 +28,17 @@ function showMessage(text) {
 
 async function loadProducts() {
   showMessage("Loading...");
-
+  const main = document.querySelector("#main");
   try {
     const data = await getProducts();
     renderProducts(data.products);
   } catch (error) {
     showMessage("Something went wrong. Try again");
+    const button_refresh = document.createElement("button");
+    button_refresh.className = "button_refresh";
+    button_refresh.addEventListener("click", () => loadProducts());
+    button_refresh.textContent = "Try again";
+    main.append(button_refresh);
   }
 }
 
