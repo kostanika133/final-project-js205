@@ -26,6 +26,7 @@ function showMessage(text) {
 }
 
 async function loadProducts() {
+  showMessage("Loading...");
   try {
     const data = await getProducts();
     renderProducts(data.products);
