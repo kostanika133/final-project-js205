@@ -22,18 +22,17 @@ function showMessage(text) {
   message_h3.className = "message_h3";
   message_h3.textContent = text;
   const main = document.querySelector("#main");
+  main.innerHTML = "";
   main.append(message_h3);
 }
 
 async function loadProducts() {
   showMessage("Loading...");
-  const main = document.querySelector("#main");
 
   try {
     const data = await getProducts();
     renderProducts(data.products);
   } catch (error) {
-    main.innerHTML = "";
     showMessage("Something went wrong. Try again");
   }
 }
