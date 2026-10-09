@@ -31,7 +31,11 @@ async function loadProducts() {
   const main = document.querySelector("#main");
   try {
     const data = await getProducts();
-    renderProducts(data.products);
+    if (data.products.length === 0) {
+      showMessage("No products found");
+    } else {
+      renderProducts(data.products);
+    }
   } catch (error) {
     showMessage("Something went wrong. Try again");
     const button_refresh = document.createElement("button");
