@@ -27,10 +27,13 @@ function showMessage(text) {
 
 async function loadProducts() {
   showMessage("Loading...");
+  const main = document.querySelector("#main");
+
   try {
     const data = await getProducts();
     renderProducts(data.products);
   } catch (error) {
+    main.innerHTML = "";
     showMessage("Something went wrong. Try again");
   }
 }
