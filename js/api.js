@@ -7,3 +7,11 @@ async function getProducts() {
   }
   return await response.json();
 }
+
+async function getProductById(id) {
+  const response = await fetch(`https://dummyjson.com/products/${id}`);
+  if (!response.ok) {
+    throw new Error("Product could not be loaded");
+  }
+  return await response.json();
+}
