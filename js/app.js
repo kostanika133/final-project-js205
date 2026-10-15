@@ -5,15 +5,23 @@ function renderProducts(products) {
     const img = document.createElement("img");
     img.src = product.thumbnail;
     img.alt = product.title;
-    const title = product.title;
-    const price = product.price.toFixed(2);
-    const rating = product.rating;
-    const stock = product.availabilityStatus;
-    const description = product.description;
+
+    const title = document.createElement("h2");
+    title.textContent = product.title;
+
+    const description = document.createElement("p");
+    description.textContent = product.description;
+
+    const stock = document.createElement("p");
+    stock.textContent = product.availabilityStatus;
+
+    const price = document.createElement("p");
+    price.textContent = product.price.toFixed(2);
+
     const card_div = document.createElement("div");
     card_div.className = "card";
     card_div.addEventListener("click", () => loadProduct(product.id));
-    card_div.append(img, title, description, price, rating, stock);
+    card_div.append(img, title, description, stock, price);
     container.append(card_div);
   });
 }
@@ -27,7 +35,7 @@ function showMessage(text) {
   main.append(message_h3);
 }
 
-async function loadProducts() {
+async function loadProduct(id) {
   showMessage("Loading...");
   const main = document.querySelector("#main");
   try {
