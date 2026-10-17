@@ -1,7 +1,12 @@
-async function getProducts() {
-  const response = await fetch(
-    "https://dummyjson.com/products?limit=12&skip=0",
-  );
+async function getProducts(sortBy, order) {
+  let url = "https://dummyjson.com/products?limit=12&skip=0";
+  if (sortBy) {
+    url += "&sortBy=" + sortBy;
+  }
+  if (order) {
+    url += "&order=" + order;
+  }
+  const response = await fetch(url);
   if (!response.ok) {
     throw new Error("Products could not be loaded");
   }
