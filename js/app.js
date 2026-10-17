@@ -74,8 +74,18 @@ function renderProduct(product) {
   const main = document.querySelector("#main");
   main.innerHTML = "";
   const img = document.createElement("img");
-  img.src = product.thumbnail;
+  img.src = product.images[0];
   img.alt = product.title;
+  const galleryDiv = document.createElement("div");
+
+  product.images.forEach((picture) => {
+    const smallImg = document.createElement("img");
+    smallImg.src = picture;
+    smallImg.addEventListener("click", () => {
+      img.src = picture;
+    });
+    galleryDiv.append(smallImg);
+  });
 
   const title = document.createElement("h2");
   title.textContent = product.title;
@@ -131,6 +141,7 @@ function renderProduct(product) {
     stock,
     price,
     reviews,
+    galleryDiv,
     button_exit,
   );
   main.append(page_div);
