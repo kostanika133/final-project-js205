@@ -15,13 +15,20 @@ function renderProducts(products) {
     const stock = document.createElement("p");
     stock.textContent = product.availabilityStatus;
 
+    const discount = document.createElement("p");
+    discount.textContent =
+      "-" + Math.round(Number(product.discountPercentage)) + "%";
+
     const price = document.createElement("p");
     price.textContent = product.price.toFixed(2);
+
+    const rating = document.createElement("p");
+    rating.textContent = product.rating;
 
     const card_div = document.createElement("div");
     card_div.className = "card";
     card_div.addEventListener("click", () => loadProduct(product.id));
-    card_div.append(img, title, description, stock, price);
+    card_div.append(img, title, rating, description, discount, stock, price);
     container.append(card_div);
   });
 }
