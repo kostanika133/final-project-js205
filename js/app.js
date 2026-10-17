@@ -55,7 +55,8 @@ async function loadSort() {
     const button = document.createElement("button");
     button.addEventListener("click", () => loadSort());
     button.textContent = "Try again";
-    main.append(button);
+
+    document.querySelector("#main").append(button);
   }
 }
 
