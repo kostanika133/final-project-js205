@@ -26,3 +26,12 @@ async function searchProducts(query) {
   const data = await response.json();
   return data;
 }
+
+async function getCategories() {
+  const res = await fetch("https://dummyjson.com/products/categories");
+  if (!response.ok) {
+    throw new Error("could not load");
+  }
+  const data = await res.json();
+  return data;
+}
