@@ -40,11 +40,7 @@ async function loadProduct(id) {
   const main = document.querySelector("#main");
   try {
     const data = await getProductById(id);
-    if (data.products.length === 0) {
-      showMessage("No products found");
-    } else {
-      renderProducts(data);
-    }
+    renderProduct(data);
   } catch (error) {
     showMessage("Something went wrong. Try again");
     const button_refresh = document.createElement("button");
@@ -73,6 +69,71 @@ async function loadProducts() {
     button_refresh.textContent = "Try again";
     main.append(button_refresh);
   }
+}
+function renderProduct(product) {
+  const main = document.querySelector("#main");
+  main.innerHTML = "";
+  const img = document.createElement("img");
+  img.src = product.thumbnail;
+  img.alt = product.title;
+
+  const title = document.createElement("h2");
+  title.textContent = product.title;
+
+  const description = document.createElement("p");
+  description.textContent = product.description;
+
+  const brand = document.createElement("p");
+  if (product.brand) {
+    brand.textContent = product.brand;
+  }
+
+  const stock = document.createElement("p");
+  stock.textContent = product.availabilityStatus;
+
+  const shiping = document.createElement("p");
+  shiping.textContent = product.shippingInformation;
+
+  const price = document.createElement("p");
+  price.textContent = product.price.toFixed(2);
+
+  const reviews = document.createElement("div");
+
+  product.reviews.forEach((review) => {
+    const rating = document.createElement("p");
+    rating.textContent = review.rating;
+
+    const comment = document.createElement("p");
+    comment.textContent = review.comment;
+
+    const reviewerName = document.createElement("p");
+    reviewerName.textContent = review.reviewerName;
+
+    const date = document.createElement("p");
+    date.textContent = review.date;
+
+    reviews.append(rating, comment, reviewerName, date);
+  });
+
+  const button_exit = document.createElement("button");
+  button_exit.addEventListener("click", () => loadProducts());
+  button_exit.textContent = "back";
+
+  const page_div = document.createElement("div");
+
+  page_div.className = "page_div";
+  page_div.append(
+    img,
+    title,
+    description,
+    brand,
+    shiping,
+    stock,
+    price,
+    reviews,
+    button_exit,
+  );
+  main.append(page_div);
 }
 
 loadProducts();
