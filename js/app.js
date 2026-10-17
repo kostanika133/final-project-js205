@@ -33,6 +33,43 @@ function renderProducts(products) {
   });
 }
 
+async function loadCategories() {
+  try {
+    const categories = await getCategories();
+    categories.forEach((category) => {
+      const option = document.createElement("option");
+      option.value = category.slug;
+      option.textContent = category.name;
+      document.querySelector("#category-select").append(option);
+    });
+  } catch {}
+}
+
+async function loadCategory() {
+  const slug = document.querySelector("#category-select").value;
+  if (slug === "all") {
+    loadProducts();
+    return;
+  }
+  try {
+    showMessage("Loading...");
+    const data = await getProductsByCategory(slug);
+    if (data.products.length === 0) {
+      showMessage("No products found");
+    } else {
+      renderProducts(data.products);
+    }
+  } catch {
+    const main = document.querySelector("#main");
+    showMessage("Something went wrong. Try again");
+
+    const try_button = document.createElement("button");
+    try_button.textContent = "Try again";
+    try_button.addEventListener("click", () => loadCategory());
+    main.append(try_button);
+  }
+}
+
 async function loadSearch() {
   const query = document.querySelector("#search-input").value;
   if (query === "") {
@@ -181,3 +218,8 @@ function renderProduct(product) {
 
 loadProducts();
 document.querySelector("#search-button").addEventListener("click", loadSearch);
+
+loadCategories();
+document
+  .querySelector("#category-select")
+  .addEventListener("change", loadCategory);
