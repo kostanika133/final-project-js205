@@ -33,6 +33,31 @@ function renderProducts(products) {
   });
 }
 
+async function loadSearch() {
+  const query = document.querySelector("#search-input").value;
+  if (query === "") {
+    loadProducts();
+    return;
+  }
+  try {
+    showMessage("Loading...");
+    const data = await searchProducts(query);
+    if (data.products.length === 0) {
+      showMessage("No products found");
+    } else {
+      renderProducts(data.products);
+    }
+  } catch {
+    const main = document.querySelector("#main");
+    showMessage("Something went wrong. Try again");
+
+    const try_button = document.createElement("button");
+    try_button.textContent = "Try again";
+    try_button.addEventListener("click", () => loadSearch());
+    main.append(try_button);
+  }
+}
+
 function showMessage(text) {
   const message_h3 = document.createElement("h3");
   message_h3.className = "message_h3";
@@ -155,3 +180,4 @@ function renderProduct(product) {
 }
 
 loadProducts();
+document.querySelector("#search-button").addEventListener("click", loadSearch);
