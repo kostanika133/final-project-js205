@@ -15,3 +15,14 @@ async function getProductById(id) {
   }
   return await response.json();
 }
+
+async function searchProducts(query) {
+  const response = await fetch(
+    `https://dummyjson.com/products/search?q=${query}`,
+  );
+  if (!response.ok) {
+    throw new Error("could not be loaded");
+  }
+  const data = await response.json();
+  return data;
+}
