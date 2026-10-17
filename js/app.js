@@ -33,6 +33,32 @@ function renderProducts(products) {
   });
 }
 
+async function loadSort() {
+  const sort_select = document.querySelector("#sort-select").value;
+  if (sort_select === "") {
+    loadProducts();
+    return;
+  }
+  const parts = sort_select.split("-");
+  const sortBy = parts[0];
+  const order = parts[1];
+  showMessage("loading...");
+  try {
+    const data = await getProducts(sortBy, order);
+    if (data.products.length === 0) {
+      showMessage("No products found");
+    } else {
+      renderProducts(data.products);
+    }
+  } catch {
+    showMessage("Something went wrong. Try again");
+    const button = document.createElement("button");
+    button.addEventListener("click", () => loadSort());
+    button.textContent = "Try again";
+    main.append(button);
+  }
+}
+
 async function loadCategories() {
   try {
     const categories = await getCategories();
@@ -223,3 +249,4 @@ loadCategories();
 document
   .querySelector("#category-select")
   .addEventListener("change", loadCategory);
+document.querySelector("#sort-select").addEventListener("change", loadSort);
