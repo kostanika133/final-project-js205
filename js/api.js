@@ -28,10 +28,21 @@ async function searchProducts(query) {
 }
 
 async function getCategories() {
-  const res = await fetch("https://dummyjson.com/products/categories");
+  const response = await fetch("https://dummyjson.com/products/categories");
   if (!response.ok) {
     throw new Error("could not load");
   }
-  const data = await res.json();
+  const data = await response.json();
+  return data;
+}
+
+async function getProductsByCategory(slug) {
+  const response = await fetch(
+    `https://dummyjson.com/products/category/${slug}`,
+  );
+  if (!response.ok) {
+    throw new Error("could not load");
+  }
+  const data = await response.json();
   return data;
 }
