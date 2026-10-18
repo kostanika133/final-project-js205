@@ -22,6 +22,56 @@ function addToCart(product) {
   updateCartCounter();
 }
 
+function updateCartCounter() {
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  if (cart === null) {
+    cart = [];
+  }
+
+  const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+  document.querySelector("#cart-count").textContent = total;
+}
+
+function renderCart() {
+  const main = document.querySelector("#main");
+  main.innerHTML = "";
+
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  if (cart === null) {
+    cart = [];
+  }
+
+  if (cart.length === 0) {
+    showMessage("Your cart is empty");
+    const back_button = document.createElement("button");
+    back_button.textContent = "Back to products";
+    back_button.addEventListener("click", () => loadProducts());
+    main.append(back_button);
+    return;
+  }
+
+  cart.forEach((item) => {
+    const row = document.createElement("div");
+
+    const title = document.createElement("h3");
+    title.textContent = item.title;
+
+    const price = document.createElement("p");
+    price.textContent = item.price.toFixed(2);
+
+    const quantity = document.createElement("p");
+    quantity.textContent = item.quantity;
+
+    row.append(title, price, quantity);
+    main.append(row);
+  });
+
+  const back_button = document.createElement("button");
+  back_button.textContent = "Back to products";
+  back_button.addEventListener("click", () => loadProducts());
+  main.append(back_button);
+}
+
 function renderProducts(products) {
   const container = document.querySelector("#main");
   container.innerHTML = "";
@@ -314,3 +364,5 @@ document.querySelector("#next-button").addEventListener("click", () => {
   currentPage++;
   loadProducts();
 });
+
+document.querySelector("#cart-button").addEventListener("click", renderCart);
