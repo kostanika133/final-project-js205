@@ -1,10 +1,13 @@
-async function getProducts(sortBy, order) {
-  let url = "https://dummyjson.com/products?limit=12&skip=0";
+async function getProducts(sortBy, order, skip) {
+  let url = "https://dummyjson.com/products?limit=12";
   if (sortBy) {
     url += "&sortBy=" + sortBy;
   }
   if (order) {
     url += "&order=" + order;
+  }
+  if (skip) {
+    url += "&skip=" + skip;
   }
   const response = await fetch(url);
   if (!response.ok) {
