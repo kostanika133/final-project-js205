@@ -1,3 +1,5 @@
+let currentPage = 1;
+
 function renderProducts(products) {
   const container = document.querySelector("#main");
   container.innerHTML = "";
@@ -150,8 +152,22 @@ async function loadProduct(id) {
 async function loadProducts() {
   showMessage("Loading...");
   const main = document.querySelector("#main");
+  const skip = (currentPage - 1) * 12;
   try {
-    const data = await getProducts();
+    const data = await getProducts(undefined, undefined, skip);
+    let pages = Math.ceil(data.total / 12);
+    let page_info = document.querySelector("#page-info");
+    if (currentPage === pages) {
+      document.querySelector("#next-button").disabled = true;
+    } else {
+      document.querySelector("#next-button").disabled = false;
+    }
+    if (currentPage === 1) {
+      document.querySelector("#prev-button").disabled = true;
+    } else {
+      document.querySelector("#prev-button").disabled = false;
+    }
+    page_info.textContent = `Page ${currentPage} of ${pages}`;
     if (data.products.length === 0) {
       showMessage("No products found");
     } else {
@@ -251,3 +267,12 @@ document
   .querySelector("#category-select")
   .addEventListener("change", loadCategory);
 document.querySelector("#sort-select").addEventListener("change", loadSort);
+
+document.querySelector("#prev-button").addEventListener("click", () => {
+  currentPage--;
+  loadProducts();
+});
+document.querySelector("#next-button").addEventListener("click", () => {
+  currentPage++;
+  loadProducts();
+});
