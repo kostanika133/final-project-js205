@@ -22,6 +22,49 @@ function addToCart(product) {
   updateCartCounter();
 }
 
+async function loadCheckout(event) {
+  event.preventDefault();
+
+  const name = document.querySelector("#name-input").value;
+  const email = document.querySelector("#email-input").value;
+  const address = document.querySelector("#address-input").value;
+
+  const name_error = document.querySelector("#name-error");
+  const email_error = document.querySelector("#email-error");
+  const address_error = document.querySelector("#address-error");
+
+  name_error.textContent = "";
+  email_error.textContent = "";
+  address_error.textContent = "";
+
+  let valid = true;
+
+  if (name === "") {
+    name_error.textContent = "Name is required";
+    valid = false;
+  }
+
+  if (email === "") {
+    email_error.textContent = "Email is required";
+    valid = false;
+  } else if (!email.includes("@")) {
+    email_error.textContent = "Enter a valid email";
+    valid = false;
+  }
+
+  if (address === "") {
+    address_error.textContent = "Address is required";
+    valid = false;
+  } else if (address.length < 5) {
+    address_error.textContent = "Address is too short";
+    valid = false;
+  }
+
+  if (valid === false) {
+    return;
+  }
+}
+
 function updateCartCounter() {
   let cart = JSON.parse(localStorage.getItem("cart"));
   if (cart === null) {
@@ -424,3 +467,6 @@ document.querySelector("#next-button").addEventListener("click", () => {
 document.querySelector("#cart-button").addEventListener("click", renderCart);
 
 updateCartCounter();
+document
+  .querySelector("#checkout-form")
+  .addEventListener("submit", loadCheckout);
