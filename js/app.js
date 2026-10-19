@@ -63,6 +63,20 @@ async function loadCheckout(event) {
   if (valid === false) {
     return;
   }
+  const submit_button = document.querySelector("#checkout-form button");
+  submit_button.disabled = true;
+  submit_button.textContent = "Sending...";
+
+  try {
+    const result = await addUser({ firstName: name, email, address });
+    showMessage("Order placed for " + result.firstName + ", id " + result.id);
+    document.querySelector("#checkout-form").reset();
+  } catch (error) {
+    showMessage("Something went wrong. Try again");
+  } finally {
+    submit_button.disabled = false;
+    submit_button.textContent = "Place order";
+  }
 }
 
 function updateCartCounter() {
@@ -95,6 +109,7 @@ function renderCart() {
 
   cart.forEach((item) => {
     const row = document.createElement("div");
+    row.className = "cart-row";
 
     const title = document.createElement("h3");
     title.textContent = item.title;
@@ -376,6 +391,7 @@ function renderProduct(product) {
   img.src = product.images[0];
   img.alt = product.title;
   const galleryDiv = document.createElement("div");
+  galleryDiv.className = "gallery";
 
   product.images.forEach((picture) => {
     const smallImg = document.createElement("img");

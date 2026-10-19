@@ -16,6 +16,18 @@ async function getProducts(sortBy, order, skip) {
   return await response.json();
 }
 
+async function addUser(user) {
+  const response = await fetch("https://dummyjson.com/users/add", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user),
+  });
+  if (!response.ok) {
+    throw new Error("Could not submit order");
+  }
+  return await response.json();
+}
+
 async function getProductById(id) {
   const response = await fetch(`https://dummyjson.com/products/${id}`);
   if (!response.ok) {

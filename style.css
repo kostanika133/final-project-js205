@@ -1,0 +1,150 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #faf6f0;
+  color: #40342f;
+  padding: 16px;
+}
+
+input,
+select {
+  padding: 8px;
+  border: 1px solid #e8ddd0;
+  border-radius: 6px;
+  font-size: 16px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+button {
+  background: #c1664f;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+button:hover {
+  background: #a5533d;
+}
+
+button:disabled {
+  background: #ccc;
+}
+
+#main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.card {
+  width: 220px;
+  background: white;
+  border: 1px solid #e8ddd0;
+  border-radius: 10px;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.card:hover {
+  box-shadow: 0 2px 8px #ccc;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.page_div {
+  background: white;
+  border: 1px solid #e8ddd0;
+  border-radius: 10px;
+  padding: 16px;
+  max-width: 700px;
+}
+
+.page_div > img {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.gallery {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 8px 0;
+}
+
+.gallery img {
+  width: 80px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cart-row {
+  background: white;
+  border: 1px solid #e8ddd0;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  max-width: 500px;
+}
+
+#name-error,
+#email-error,
+#address-error {
+  color: red;
+  font-size: 14px;
+  margin-left: 4px;
+}
+
+.message_h3 {
+  text-align: center;
+  padding: 24px;
+}
+
+#checkout-form {
+  background: white;
+  border: 1px solid #e8ddd0;
+  border-radius: 10px;
+  padding: 16px;
+  max-width: 400px;
+  margin-top: 24px;
+}
+
+#checkout-form label {
+  display: block;
+  margin-top: 8px;
+}
+
+#checkout-form input {
+  width: 100%;
+  margin-right: 0;
+}
+
+@media (max-width: 500px) {
+  .card {
+    width: 100%;
+  }
+
+  input,
+  select,
+  button {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .page_div > img {
+    max-width: 100%;
+  }
+}
