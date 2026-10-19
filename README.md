@@ -1,14 +1,12 @@
 ---
 
-online store
+#online store
 
 this app is for people who to browse shop without going outside they can order anything.
 it is onilne store.
 github link: https://github.com/kostanika133/final-project-js205
 
 ## Screenshots
-
-Put at least one screenshot here. Save the image in a `docs/` folder and show it like this: `![Home page](docs/home.png)`
 
 ## How to run
 
@@ -22,11 +20,18 @@ and reviews, cart, checkout
 
 ## API
 
-| Request                                             | Used for                  |
-| --------------------------------------------------- | ------------------------- |
-| `GET https://dummyjson.com/recipes?limit=12&skip=0` | The list on the home page |
+| Request                                              | Used for               |
+| ---------------------------------------------------- | ---------------------- |
+| `GET https://dummyjson.com/products?limit=12&skip=…` | home list + pagination |
+| `GET https://dummyjson.com/products/search?q=…`      | search                 |
+| `GET https://dummyjson.com/products/categories`      | category list          |
+| `GET https://dummyjson.com/products/category/{slug}` | filter by category     |
+| `GET https://dummyjson.com/products/{id}`            | product detail         |
+| `POST https://dummyjson.com/users/add`               | checkout               |
 
 ## Bonus tasks
+
+X8:dark mode
 
 ## What I would improve
 
