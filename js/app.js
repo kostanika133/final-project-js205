@@ -74,6 +74,16 @@ async function loadCheckout(event) {
     email_error.textContent = "Enter a valid email";
     valid = false;
   }
+  const phone = document.querySelector("#phone-input").value;
+
+  const phone_error = document.querySelector("#phone-error");
+
+  phone_error.textContent = "";
+
+  if (phone === "") {
+    phone_error.textContent = "Phone is required";
+    valid = false;
+  }
 
   if (address === "") {
     address_error.textContent = "Address is required";
@@ -91,7 +101,7 @@ async function loadCheckout(event) {
   submit_button.textContent = "Sending...";
 
   try {
-    const result = await addUser({ firstName: name, email, address });
+    const result = await addUser({ firstName: name, email, phone, address });
     showMessage("Order placed for " + result.firstName + ", id " + result.id);
     document.querySelector("#checkout-form").reset();
   } catch (error) {
