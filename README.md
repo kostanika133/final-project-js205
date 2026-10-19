@@ -8,6 +8,8 @@ github link: https://github.com/kostanika133/final-project-js205
 
 ## Screenshots
 
+![Home page](screenshots/home.png)
+
 ## How to run
 
 1. Clone the repository.
