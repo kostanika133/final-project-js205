@@ -20,26 +20,46 @@ Format:
 ---
 
 ### 1 · 2026-10-19 19:08
+
 **Prompt:**
+
 > grade the project based of teachers system dont execute unnesesary commands
-**Type:** review
-**What I did:** Read SCORING.md, PROJECTS.md and all project files, then graded the app against the rubric.
-**Files changed:** none
+> **Type:** review
+> **What I did:** Read SCORING.md, PROJECTS.md and all project files, then graded the app against the rubric.
+> **Files changed:** none
 
 ---
 
 ### 2 · 2026-10-19 19:49
+
 **Prompt:**
+
 > can you fix css if anything is wrong? only css no other files
-**Type:** code
-**What I did:** Fixed two CSS bugs: added #phone-error to the error styling, and wired the dark-mode variables (--bg, --text, --border, --primary, --primary-dark) into body, buttons, inputs and card borders so the theme toggle actually works.
-**Files changed:** `style.css`
+> **Type:** code
+> **What I did:** Fixed two CSS bugs: added #phone-error to the error styling, and wired the dark-mode variables (--bg, --text, --border, --primary, --primary-dark) into body, buttons, inputs and card borders so the theme toggle actually works.
+> **Files changed:** `style.css`
 
 ---
 
 ### 3 · 2026-10-19 19:54
+
 **Prompt:**
+
 > also is everything allright in the file? should i finnly push it?
-**Type:** review
-**What I did:** Reviewed style.css and ran git status; confirmed the CSS is correct and pointed out that style.css and AI_LOG.md are still uncommitted, with the commit/push commands.
-**Files changed:** none
+> **Type:** review
+> **What I did:** Reviewed style.css and ran git status; confirmed the CSS is correct and pointed out that style.css and AI_LOG.md are still uncommitted, with the commit/push commands.
+> **Files changed:** none
+
+**Prompt:** > when is the due date?
+**Type:** other
+**What I did:** Confirmed from assignment/README.md that the deadline is 20 October 2026,
+23:59.
+
+### 167 · 2026-10-19 19:59
+
+    **Prompt:**
+    > how do i submit my work?
+    **Type:** explain
+    **What I did:** Gave the five submission steps from assignment/README.md (README, push,
+
+test fresh, self-check, GitHub issue form).
