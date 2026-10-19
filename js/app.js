@@ -62,7 +62,26 @@ function renderCart() {
     const quantity = document.createElement("p");
     quantity.textContent = item.quantity;
 
-    row.append(title, price, quantity);
+    const minus_button = document.createElement("button");
+    minus_button.textContent = "−";
+    minus_button.addEventListener("click", () => changeQuantity(item.id, -1));
+
+    const plus_button = document.createElement("button");
+    plus_button.textContent = "+";
+    plus_button.addEventListener("click", () => changeQuantity(item.id, 1));
+
+    const remove_button = document.createElement("button");
+    remove_button.textContent = "Remove";
+    remove_button.addEventListener("click", () => removeFromCart(item.id));
+
+    row.append(
+      title,
+      price,
+      quantity,
+      minus_button,
+      plus_button,
+      remove_button,
+    );
     main.append(row);
   });
 
@@ -70,6 +89,37 @@ function renderCart() {
   back_button.textContent = "Back to products";
   back_button.addEventListener("click", () => loadProducts());
   main.append(back_button);
+}
+function removeFromCart(id) {
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  if (cart === null) {
+    cart = [];
+  }
+
+  cart = cart.filter((item) => item.id !== id);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCounter();
+  renderCart();
+}
+
+function changeQuantity(id, delta) {
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  if (cart === null) {
+    cart = [];
+  }
+
+  const item = cart.find((entry) => entry.id === id);
+  if (item) {
+    item.quantity += delta;
+    if (item.quantity <= 0) {
+      cart = cart.filter((entry) => entry.id !== id);
+    }
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCounter();
+  renderCart();
 }
 
 function renderProducts(products) {
@@ -159,7 +209,13 @@ async function loadCategories() {
       option.textContent = category.name;
       document.querySelector("#category-select").append(option);
     });
-  } catch {}
+  } catch {
+    showMessage("something went wrong");
+    const try_button = document.createElement("button");
+    try_button.textContent = "try again";
+    try_button.addEventListener("click", () => loadCategory());
+    main.append(try_button);
+  }
 }
 
 async function loadCategory() {
@@ -366,3 +422,5 @@ document.querySelector("#next-button").addEventListener("click", () => {
 });
 
 document.querySelector("#cart-button").addEventListener("click", renderCart);
+
+updateCartCounter();
