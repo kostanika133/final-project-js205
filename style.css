@@ -22,15 +22,15 @@ body.dark {
 body {
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  background: #faf6f0;
-  color: #40342f;
+  background: var(--bg);
+  color: var(--text);
   padding: 16px;
 }
 
 input,
 select {
   padding: 8px;
-  border: 1px solid #e8ddd0;
+  border: 1px solid var(--border);
   border-radius: 6px;
   font-size: 16px;
   margin-right: 8px;
@@ -38,7 +38,7 @@ select {
 }
 
 button {
-  background: #c1664f;
+  background: var(--primary);
   color: white;
   border: none;
   padding: 8px 14px;
@@ -50,7 +50,7 @@ button {
 }
 
 button:hover {
-  background: #a5533d;
+  background: var(--primary-dark);
 }
 
 button:disabled {
@@ -67,14 +67,14 @@ button:disabled {
 .card {
   width: 220px;
   background: var(--card-bg);
-  border: 1px solid #e8ddd0;
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 15px;
   cursor: pointer;
 }
 
 .card:hover {
-  box-shadow: 0 2px 8px #ccc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .card img {
@@ -84,7 +84,7 @@ button:disabled {
 
 .page_div {
   background: var(--card-bg);
-  border: 1px solid #e8ddd0;
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 16px;
   max-width: 700px;
@@ -111,7 +111,7 @@ button:disabled {
 
 .cart-row {
   background: var(--card-bg);
-  border: 1px solid #e8ddd0;
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 12px;
   margin-bottom: 12px;
@@ -120,6 +120,7 @@ button:disabled {
 
 #name-error,
 #email-error,
+#phone-error,
 #address-error {
   color: red;
   font-size: 14px;
@@ -133,7 +134,7 @@ button:disabled {
 
 #checkout-form {
   background: var(--card-bg);
-  border: 1px solid #e8ddd0;
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 16px;
   max-width: 400px;

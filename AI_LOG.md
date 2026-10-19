@@ -25,3 +25,21 @@ Format:
 **Type:** review
 **What I did:** Read SCORING.md, PROJECTS.md and all project files, then graded the app against the rubric.
 **Files changed:** none
+
+---
+
+### 2 · 2026-10-19 19:49
+**Prompt:**
+> can you fix css if anything is wrong? only css no other files
+**Type:** code
+**What I did:** Fixed two CSS bugs: added #phone-error to the error styling, and wired the dark-mode variables (--bg, --text, --border, --primary, --primary-dark) into body, buttons, inputs and card borders so the theme toggle actually works.
+**Files changed:** `style.css`
+
+---
+
+### 3 · 2026-10-19 19:54
+**Prompt:**
+> also is everything allright in the file? should i finnly push it?
+**Type:** review
+**What I did:** Reviewed style.css and ran git status; confirmed the CSS is correct and pointed out that style.css and AI_LOG.md are still uncommitted, with the commit/push commands.
+**Files changed:** none
